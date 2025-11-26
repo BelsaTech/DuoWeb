@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, CheckCircle } from "lucide-react";
+import { subscribeToMailerLite } from "@/services/mailerlite";
 
 export const PreRegistration = () => {
   const [email, setEmail] = useState("");
@@ -12,7 +13,7 @@ export const PreRegistration = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!email || !email.includes("@")) {
       toast({
         title: "Invalid email",
@@ -23,16 +24,34 @@ export const PreRegistration = () => {
     }
 
     setIsLoading(true);
-    
-    // Simulate API call
-    setTimeout(() => {
-      setIsLoading(false);
-      setIsSubmitted(true);
+
+    try {
+      // Subscribe to MailerLite
+      const result = await subscribeToMailerLite({ email });
+
+      if (result.success) {
+        setIsSubmitted(true);
+        toast({
+          title: "Successfully registered!",
+          description: "We'll notify you when DuoMind is available",
+        });
+      } else {
+        toast({
+          title: "Registration failed",
+          description: result.message,
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
       toast({
-        title: "Successfully registered!",
-        description: "We'll notify you when DuoMind is available",
+        title: "Error",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
       });
-    }, 1000);
+      console.error("Error submitting email:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (isSubmitted) {
