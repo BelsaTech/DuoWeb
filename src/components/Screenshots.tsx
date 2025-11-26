@@ -58,7 +58,7 @@ export const Screenshots = () => {
             A shared space where AI helps both communicate better
           </p>
         </div>
-        
+
         <div className="space-y-20">
           {screenshots.map((screenshot, index) => (
             <div
