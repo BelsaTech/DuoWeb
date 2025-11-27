@@ -37,7 +37,7 @@ export default async function handler(
     // Send emails to all subscribers
     const emailPromises = emails.map((email: string) =>
       resend.emails.send({
-        from: 'DuoMind <hola@notifications.belsatecht.lat>', // Tu dominio verificado en Resend
+        from: 'DuoMind <duomind@notifications.belsatecht.lat>', // Tu dominio verificado en Resend
         to: email,
         subject: 'Tu aplicación DuoMind está lista',
         html: `
