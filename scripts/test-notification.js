@@ -6,7 +6,7 @@
  */
 
 const NOTIFICATION_SECRET = process.env.NOTIFICATION_SECRET || 'DuoMind1109';
-const VERCEL_URL = process.env.VERCEL_URL || 'https://duo-web.vercel.app'; // Cambia por tu URL de Vercel
+const VERCEL_URL = process.env.VERCEL_URL || 'https://duomindbelsa.vercel.app';
 const testEmail = process.argv[2];
 
 if (!testEmail) {
