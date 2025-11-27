@@ -5,7 +5,7 @@
  *   node scripts/test-notification.js tu@email.com
  */
 
-const NOTIFICATION_SECRET = process.env.NOTIFICATION_SECRET || 'test123';
+const NOTIFICATION_SECRET = process.env.NOTIFICATION_SECRET || 'DuoMind1109';
 const VERCEL_URL = process.env.VERCEL_URL || 'https://duo-web.vercel.app'; // Cambia por tu URL de Vercel
 const testEmail = process.argv[2];
 
