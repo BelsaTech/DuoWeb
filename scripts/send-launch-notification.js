@@ -11,8 +11,7 @@
 const MAILERLITE_API_KEY = process.env.VITE_MAILERLITE_API_KEY;
 const MAILERLITE_GROUP_ID = process.env.VITE_MAILERLITE_GROUP_ID;
 const NOTIFICATION_SECRET = process.env.NOTIFICATION_SECRET;
-const VERCEL_URL = process.env.VERCEL_URL || 'http://localhost:8080';
-const PLAY_STORE_URL = process.env.PLAY_STORE_URL || 'https://play.google.com/store/apps/details?id=com.duomind';
+const VERCEL_URL = process.env.VERCEL_URL || 'https://duo-web.vercel.app'; // 🔗 Actualiza con tu URL de Vercel
 
 async function getSubscribers() {
   console.log('📥 Fetching subscribers from MailerLite...');
@@ -49,7 +48,6 @@ async function sendNotifications(emails) {
     body: JSON.stringify({
       secret: NOTIFICATION_SECRET,
       emails,
-      playStoreUrl: PLAY_STORE_URL,
     }),
   });
 

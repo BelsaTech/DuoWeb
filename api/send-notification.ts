@@ -20,7 +20,7 @@ export default async function handler(
   }
 
   // Verify secret key to prevent unauthorized access
-  const { secret, emails, playStoreUrl } = req.body;
+  const { secret, emails } = req.body;
 
   if (secret !== process.env.NOTIFICATION_SECRET) {
     return res.status(401).json({ error: 'Unauthorized' });
@@ -30,7 +30,8 @@ export default async function handler(
     return res.status(400).json({ error: 'Emails array is required' });
   }
 
-  const appUrl = playStoreUrl || 'https://play.google.com/store/apps/details?id=com.duomind';
+  // 🔗 IMPORTANTE: Cuando tu app esté en Play Store, actualiza este enlace:
+  const APP_STORE_URL = 'https://play.google.com/store/apps/details?id=com.duomind';
 
   try {
     // Send emails to all subscribers
@@ -121,7 +122,7 @@ export default async function handler(
     <p>DuoMind, la aplicación que te registraste para probar, ya está oficialmente disponible en Google Play Store.</p>
 
     <div style="text-align: center;">
-      <a href="${appUrl}" class="button">📱 Descargar ahora</a>
+      <a href="${APP_STORE_URL}" class="button">📱 Descargar ahora</a>
     </div>
 
     <p><strong>¿Qué puedes hacer con DuoMind?</strong></p>

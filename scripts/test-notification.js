@@ -30,7 +30,6 @@ async function sendTestEmail() {
       body: JSON.stringify({
         secret: NOTIFICATION_SECRET,
         emails: [testEmail],
-        playStoreUrl: 'https://play.google.com/store/apps/details?id=com.duomind',
       }),
     });
 
