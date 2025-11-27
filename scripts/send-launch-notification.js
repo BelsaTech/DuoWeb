@@ -8,6 +8,10 @@
  * a notification via Resend that the app is ready.
  */
 
+// Load environment variables from .env file
+import dotenv from 'dotenv';
+dotenv.config();
+
 const MAILERLITE_API_KEY = process.env.VITE_MAILERLITE_API_KEY;
 const MAILERLITE_GROUP_ID = process.env.VITE_MAILERLITE_GROUP_ID;
 const NOTIFICATION_SECRET = process.env.NOTIFICATION_SECRET;

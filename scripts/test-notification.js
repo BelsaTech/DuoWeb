@@ -5,6 +5,10 @@
  *   node scripts/test-notification.js tu@email.com
  */
 
+// Load environment variables from .env file
+import dotenv from 'dotenv';
+dotenv.config();
+
 const NOTIFICATION_SECRET = process.env.NOTIFICATION_SECRET || 'DuoMind1109';
 const VERCEL_URL = process.env.VERCEL_URL || 'https://duomindbelsa.vercel.app';
 const testEmail = process.argv[2];
