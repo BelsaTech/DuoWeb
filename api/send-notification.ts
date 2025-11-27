@@ -39,111 +39,34 @@ export default async function handler(
       resend.emails.send({
         from: 'DuoMind <hola@notifications.belsatecht.lat>', // Tu dominio verificado en Resend
         to: email,
-        subject: 'DuoMind ya está disponible',
+        subject: 'Tu aplicación DuoMind está lista',
         html: `
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-      line-height: 1.6;
-      color: #333;
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    .header {
-      text-align: center;
-      padding: 40px 20px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      border-radius: 10px;
-      margin-bottom: 30px;
-    }
-    .header h1 {
-      margin: 0;
-      font-size: 28px;
-    }
-    .content {
-      padding: 20px;
-      background: #f9f9f9;
-      border-radius: 10px;
-      margin-bottom: 20px;
-    }
-    .button {
-      display: inline-block;
-      padding: 15px 30px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white !important;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-      margin: 20px 0;
-      text-align: center;
-    }
-    .features {
-      list-style: none;
-      padding: 0;
-    }
-    .features li {
-      padding: 10px 0;
-      padding-left: 30px;
-      position: relative;
-    }
-    .features li:before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: #667eea;
-      font-weight: bold;
-      font-size: 20px;
-    }
-    .footer {
-      text-align: center;
-      padding: 20px;
-      color: #666;
-      font-size: 14px;
-    }
-  </style>
 </head>
-<body>
-  <div class="header">
-    <h1>🎉 ¡DuoMind ya está disponible!</h1>
-  </div>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0; padding: 20px;">
 
-  <div class="content">
-    <p>Hola,</p>
+  <p>Hola,</p>
 
-    <p><strong>¡Tenemos grandes noticias!</strong> 🚀</p>
+  <p>Te escribimos para informarte que <strong>DuoMind ya está disponible en Google Play Store</strong>.</p>
 
-    <p>DuoMind, la aplicación que te registraste para probar, ya está oficialmente disponible en Google Play Store.</p>
+  <p>Como te registraste para recibir una notificación cuando la aplicación estuviera lista, aquí está el enlace de descarga:</p>
 
-    <div style="text-align: center;">
-      <a href="${APP_STORE_URL}" class="button">📱 Descargar ahora</a>
-    </div>
+  <p><a href="${APP_STORE_URL}" style="color: #667eea; text-decoration: none;">${APP_STORE_URL}</a></p>
 
-    <p><strong>¿Qué puedes hacer con DuoMind?</strong></p>
-    <ul class="features">
-      <li>Chatea con múltiples modelos de IA simultáneamente</li>
-      <li>Compara respuestas de diferentes asistentes</li>
-      <li>Obtén las mejores respuestas para tus preguntas</li>
-      <li>Interfaz intuitiva y fácil de usar</li>
-    </ul>
+  <p>DuoMind te permite chatear con múltiples modelos de IA simultáneamente y comparar sus respuestas.</p>
 
-    <p>Descárgala ahora y sé de los primeros en experimentar el futuro de los asistentes conversacionales con IA.</p>
+  <p>Gracias por tu interés,<br>
+  El equipo de DuoMind</p>
 
-    <p><strong>¡Gracias por tu paciencia y apoyo!</strong></p>
+  <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
 
-    <p>El equipo de DuoMind</p>
-  </div>
+  <p style="font-size: 12px; color: #999;">
+    Recibiste este email porque te registraste en duomindbelsa.vercel.app para ser notificado cuando DuoMind estuviera disponible.
+  </p>
 
-  <div class="footer">
-    <p>Recibiste este email porque te registraste en <a href="https://duomind.app">duomind.app</a> para ser notificado cuando la aplicación estuviera disponible.</p>
-    <p>Si ya no deseas recibir estos emails, puedes ignorar este mensaje.</p>
-  </div>
 </body>
 </html>
         `,
