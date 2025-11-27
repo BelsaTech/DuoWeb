@@ -26,8 +26,16 @@ export const PreRegistration = () => {
     setIsLoading(true);
 
     try {
-      // Subscribe to MailerLite
-      const result = await subscribeToMailerLite({ email });
+      // Detect user's language from browser
+      const userLanguage = navigator.language.split('-')[0]; // 'es', 'en', etc.
+
+      // Subscribe to MailerLite with language field
+      const result = await subscribeToMailerLite({
+        email,
+        fields: {
+          language: userLanguage
+        }
+      });
 
       if (result.success) {
         setIsSubmitted(true);

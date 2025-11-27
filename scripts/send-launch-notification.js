@@ -35,13 +35,24 @@ async function getSubscribers() {
   }
 
   const data = await response.json();
-  const emails = data.data.map(subscriber => subscriber.email);
+  const subscribers = data.data.map(subscriber => ({
+    email: subscriber.email,
+    language: subscriber.fields?.language || 'es' // Default to Spanish
+  }));
 
-  console.log(`✅ Found ${emails.length} subscribers`);
-  return emails;
+  console.log(`✅ Found ${subscribers.length} subscribers`);
+
+  // Show language distribution
+  const languages = subscribers.reduce((acc, sub) => {
+    acc[sub.language] = (acc[sub.language] || 0) + 1;
+    return acc;
+  }, {});
+  console.log(`   Languages: ${Object.entries(languages).map(([lang, count]) => `${lang}: ${count}`).join(', ')}`);
+
+  return subscribers;
 }
 
-async function sendNotifications(emails) {
+async function sendNotifications(subscribers) {
   console.log('📧 Sending notifications via Resend...');
 
   const response = await fetch(`${VERCEL_URL}/api/send-notification`, {
@@ -51,7 +62,7 @@ async function sendNotifications(emails) {
     },
     body: JSON.stringify({
       secret: NOTIFICATION_SECRET,
-      emails,
+      subscribers,
     }),
   });
 
@@ -85,21 +96,21 @@ async function main() {
     }
 
     // Get subscribers
-    const emails = await getSubscribers();
+    const subscribers = await getSubscribers();
 
-    if (emails.length === 0) {
+    if (subscribers.length === 0) {
       console.log('⚠️  No subscribers found. Exiting...');
       return;
     }
 
     // Confirm before sending
-    console.log(`\n⚠️  You are about to send notifications to ${emails.length} subscribers.`);
+    console.log(`\n⚠️  You are about to send notifications to ${subscribers.length} subscribers.`);
     console.log('   Press Ctrl+C to cancel, or wait 5 seconds to continue...\n');
 
     await new Promise(resolve => setTimeout(resolve, 5000));
 
     // Send notifications
-    await sendNotifications(emails);
+    await sendNotifications(subscribers);
 
     console.log('\n🎉 All done! Check your email inbox for the notification.');
 
