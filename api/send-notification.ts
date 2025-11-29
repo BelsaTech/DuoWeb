@@ -13,18 +13,19 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 // Email templates in multiple languages
 const emailTemplates: Record<string, { subject: string; getHTML: (url: string) => string }> = {
   es: {
-    subject: 'Tu aplicación DuoMind está lista',
+    subject: '¡DuoMind ya está disponible en Play Store! 💙',
     getHTML: (playStoreUrl: string) => `
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8"></head>
 <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0; padding: 20px;">
   <p>Hola,</p>
-  <p>Te escribimos para informarte que <strong>DuoMind ya está disponible en Google Play Store</strong>.</p>
-  <p>Como te registraste para recibir una notificación cuando la aplicación estuviera lista, aquí está el enlace de descarga:</p>
-  <p><a href="${playStoreUrl}" style="color: #667eea; text-decoration: none;">${playStoreUrl}</a></p>
-  <p>DuoMind te permite chatear con múltiples modelos de IA simultáneamente y comparar sus respuestas.</p>
-  <p>Gracias por tu interés,<br>El equipo de DuoMind</p>
+  <p>¡Buenas noticias! DuoMind ya está disponible oficialmente en Google Play y puedes descargarla desde este momento.</p>
+  <p>Gracias por haberte registrado para recibir este aviso. Tu apoyo significó mucho durante el proceso, y hoy por fin puedo compartirte el lanzamiento.</p>
+  <p>👉 <strong>Descargar DuoMind en Play Store:</strong><br>
+  <a href="${playStoreUrl}" style="color: #667eea; text-decoration: none;">${playStoreUrl}</a></p>
+  <p>Espero que disfrutes la experiencia.</p>
+  <p>Saludos,<br>El equipo de DuoMind</p>
   <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
   <p style="font-size: 12px; color: #999;">Recibiste este email porque te registraste en duomindbelsa.vercel.app para ser notificado cuando DuoMind estuviera disponible.</p>
 </body>
